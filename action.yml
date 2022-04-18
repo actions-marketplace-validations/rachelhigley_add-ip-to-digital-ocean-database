@@ -1,4 +1,4 @@
-name: "Managed trusted sources of managed database (digital ocean)"
+name: "Add or Remove IP address to Digital Ocean Mangaged Database's Trusted Sources"
 description: "Add or remove your runner public IP address to the trusted source of your digital ocean managed database"
 branding:
   icon: database
