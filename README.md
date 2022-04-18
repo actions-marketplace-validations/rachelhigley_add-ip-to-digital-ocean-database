@@ -1,25 +1,24 @@
-# manage-digital-ocean-managed-database-trusted-sources-gh-action
+# Add IP to Digital Ocean Database
 
-
-(this is scuffed, I am doing it in a hurry)
+Based on: [GarreauArthur's GH Action](GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action)
 
 Github action to add or remove the IP address of your github hosted runner, to
-the list of the trusted sources of your digital ocean managed database. To be 
+the list of the trusted sources of your digital ocean managed database. To be
 able to let the GH runner interact with your database.
 
 So here's the scenario:
 
-* You are creating a workflow using Github actions,
-* and you are using a Digital Ocean Managed Database.
-* You are also a responsible human being, and decided to limit the access of your
-databases to trusted sources only.
-* **But**, you realize that your CI/CD workflow **needs to interact with your database**,
-* and because you are cheap or lazy (or both like me)
-* you don't want to set up a droplet to host your runner.
-* You just want to use Github hosted runners to run your workflow.
-* But you doubt that github runners always are the same with the same IP address
-* So you decided to use **this action** to add and remove the runner's IP address
-to the list of trusted sources of your database.
+- You are creating a workflow using Github actions,
+- and you are using a Digital Ocean Managed Database.
+- You are also a responsible human being, and decided to limit the access of your
+  databases to trusted sources only.
+- **But**, you realize that your CI/CD workflow **needs to interact with your database**,
+- and because you are cheap or lazy (or both like me)
+- you don't want to set up a droplet to host your runner.
+- You just want to use Github hosted runners to run your workflow.
+- But you doubt that github runners always are the same with the same IP address
+- So you decided to use **this action** to add and remove the runner's IP address
+  to the list of trusted sources of your database.
 
 I know this name is very long and annoying, but I tried to be explicit, the worst
 is that I kind of failed.
@@ -28,9 +27,10 @@ is that I kind of failed.
 
 See [action.yml](./action.yml) for more information.
 
-* `action`: whether you want to `"add"` or `"remove"` the IP address to the trusted sources 
-* `database_id`: The ID of your managed database (in UUID format). You can find it with `doctl databases list` (cf. [Digital Ocean Doc](https://docs.digitalocean.com/reference/doctl/reference/databases/list/))
-* `digitalocean_token`: A personal access token to digital ocean. Find out [here](https://docs.digitalocean.com/reference/api/create-personal-access-token/) to know how to create one.
+- `action`: whether you want to `"add"` or `"remove"` the IP address to the trusted sources
+- `database_id`: The ID of your managed database (in UUID format). You can find it with `doctl databases list` (cf. [Digital Ocean Doc](https://docs.digitalocean.com/reference/doctl/reference/databases/list/))
+- `digitalocean_token`: A personal access token to digital ocean. Find out [here](https://docs.digitalocean.com/reference/api/create-personal-access-token/) to know how to create one.
+- `ip`: An IP address to add or remove (optional, defaults to ip of the current job)
 
 Best practice: Use GitHub Secrets to store the `database_id` and `digitalocean_token`.
 
@@ -72,12 +72,3 @@ In your workflow:
 or
 
 1. Fork the project ^^
-
-## TODO list
-
-Probably never going to do this.
-
-* [ ] Set up workflow to automatically build the action
-* [ ] Let users the ability to choose the IP address they want to add/remove
-* [ ] Let users the ability to choose the rule they want to add.
-* [ ] finish the todo list
